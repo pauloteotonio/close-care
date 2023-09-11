@@ -1,0 +1,63 @@
+<div class="modal">
+  <h2>{{data.pokemonId? 'Editar':'Cadastrar'}}</h2>
+  <form [formGroup]="formPokemon" (submit)="submitForm()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Habilidades</mat-label>
+      <mat-chip-list #chipList aria-label="Ability selection">
+        <mat-chip *ngFor="let ability of localAbilities" [selectable]="true" [removable]="true"
+          (removed)="remove(ability)">
+          {{ability}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input placeholder="Nova Habilidade..." [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="typeInputControl">Habilitar tipo</mat-checkbox>
+
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Tipo</mat-label>
+      <mat-chip-list #chipTypeList aria-label="Fruit selection">
+        <mat-chip
+          *ngFor="let typeItem of localTypes"
+          [selectable]="true"
+          [removable]="true"
+          [disabled]="searchTypeControl?.disabled"
+          (removed)="removeType(typeItem)">
+          {{typeItem}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+        placeholder="Novo Tipo..."
+          #searchTypeInput
+          [formControl]="searchTypeControl"
+          [disabled]="searchTypeControl?.disabled"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipTypeList"
+          [matChipInputSeparatorKeyCodes]="null"
+          (matChipInputTokenEnd)="addType($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="typeSelected($event, searchTypeInput)">
+        <mat-option *ngFor="let option of typeFilteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    
+    <div class="button-box">
+      <button type="button" mat-button mat-dialog-close>Cancelar</button>
+      <button type="submit" mat-raised-button class="save-button" [disabled]="formPokemon?.invalid">Salvar</button>
+    </div>
+  </form>
+</div>

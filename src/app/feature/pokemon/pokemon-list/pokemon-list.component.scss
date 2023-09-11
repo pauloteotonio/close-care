@@ -1,0 +1,66 @@
+.box {
+    margin: 40px;
+    border: 2px solid lightgray;
+    border-radius: 2px;
+}
+
+.tittle-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 22px 35px;
+    align-items: center;
+}
+
+.table {
+    width: 100%;
+}
+
+.register-button {
+    width: 100px;
+    background-color: #43777a;
+    height: 35px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.colum-tittle {
+    font-weight: 500;
+    color: black;
+    font-size: 16px;
+}
+
+.icon-size {
+    font-size: 16px;
+}
+
+.edit-button {
+    display: flex;
+    align-items: initial;
+    font-size: 14px;
+    padding-top: 7px;
+    color: #43777a;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.type-red-button {
+    color: #da624e;
+    background-color: #f7deda;
+    width: 65%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 500;
+}
+
+td.mat-cell:last-of-type {
+    padding: 0;
+}
+
+th.mat-header-cell:last-of-type {
+    padding: 0;
+}
